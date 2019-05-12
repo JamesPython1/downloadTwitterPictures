@@ -69,7 +69,7 @@ def download_images(status, num_tweets, output_folder):
     for count, media_url in enumerate(tweet_media_urls(tweet_status)):
       # Only download if there is not a picture with the same name in the folder already
       created = tweet_status.created_at.strftime('%d-%m-%y at %H.%M.%S')
-      file_name = "photo.jpg"
+      file_name = "{}_({}).jpg".format(created, count+1)
       if not os.path.exists(os.path.join(output_folder, file_name)):
         wget.download(media_url +":orig", out=output_folder+'/'+file_name)
         downloaded += 1
